@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\..\Documents\unity\bluh2\Assets\source\World.cs">
+    <Files>
+      <File FileName="..\..\..\..\..\Documents\unity\bluh2\Assets\source\draw_world.cs" Line="113" Column="54" />
+      <File FileName="..\..\..\..\..\Documents\unity\bluh2\Assets\source\Chunk.cs" Line="29" Column="3" />
+      <File FileName="..\..\..\..\..\Documents\unity\bluh2\Assets\source\World.cs" Line="96" Column="43" />
+      <File FileName="..\..\..\..\..\Documents\unity\bluh2\Assets\source\ChunkLayer.cs" Line="25" Column="12" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
