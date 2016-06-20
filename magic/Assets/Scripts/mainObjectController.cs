@@ -32,6 +32,8 @@ public class mainObjectController : MonoBehaviour {
     public float testY;
 
     void Start () {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 		//set variables
 		if (speed == 0) {
 			speed = 7;
