@@ -14,6 +14,7 @@ public class characterScript : MonoBehaviour {
 	private SpriteRenderer spriteRenderer;
 	private Animation animation;
 	// Use this for initialization
+
 	void Start () {
 		animator = GetComponent<Animator>();
 		animation = GetComponent<Animation>();
@@ -27,33 +28,33 @@ public class characterScript : MonoBehaviour {
 		} else if (!mainObjectController.isStill) {
 			animator.SetBool("idle", false);
 		}
-		if (mainObjectController.movingDirection == 1 && !mainObjectController.isStill) {
+		if (mainObjectController.whichWay == 1 && !mainObjectController.isStill && !weaponBox.haveAttacked) {
 		//	Animation.Play("WalkingUp");
 			animator.SetInteger("walkingDirection", 1);
 		}
-		if (mainObjectController.movingDirection == 2 && !mainObjectController.isStill) {
+		if (mainObjectController.whichWay == 2 && !mainObjectController.isStill && !weaponBox.haveAttacked) {
 		//	Animation.Play("WalkingDown");
 			animator.SetInteger("walkingDirection", 2);
 		}
-		if (mainObjectController.movingDirection == 3 && !mainObjectController.isStill) {
+		if (mainObjectController.whichWay == 3 && !mainObjectController.isStill && !weaponBox.haveAttacked) {
 		//	Animation.Play();
 			animator.SetInteger("walkingDirection", 3);
 		}
-		if (mainObjectController.movingDirection == 4 && !mainObjectController.isStill) {
+		if (mainObjectController.whichWay == 4 && !mainObjectController.isStill && !weaponBox.haveAttacked) {
 		//	Animation.Play();
 			animator.SetInteger("walkingDirection", 4);
 		}
 		//sets the correct sprite for the direction the character is facing while not moving
-		if (mainObjectController.isStill && mainObjectController.movingDirection == 1) {
+		if (mainObjectController.isStill && mainObjectController.whichWay == 1 && !weaponBox.haveAttacked) {
 			animator.SetInteger("facingDirection", 1);
 		}
-		if (mainObjectController.isStill && mainObjectController.movingDirection == 2) {
+		if (mainObjectController.isStill && mainObjectController.whichWay == 2 && !weaponBox.haveAttacked) {
 			animator.SetInteger("facingDirection", 2);
 		}
-		if (mainObjectController.isStill && mainObjectController.movingDirection == 3) {
+		if (mainObjectController.isStill && mainObjectController.whichWay == 3 && !weaponBox.haveAttacked) {
 			animator.SetInteger("facingDirection", 3);
 		}
-		if (mainObjectController.isStill && mainObjectController.movingDirection == 4) {
+		if (mainObjectController.isStill && mainObjectController.whichWay == 4 && !weaponBox.haveAttacked) {
 			animator.SetInteger("facingDirection", 4);
 		}
 	}

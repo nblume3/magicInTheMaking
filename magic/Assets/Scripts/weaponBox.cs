@@ -5,7 +5,7 @@ public class weaponBox : MonoBehaviour {
 
 	public Sprite attackAnimation;
 	public Sprite notAttacking;
-	public bool haveAttacked;
+	public static bool haveAttacked;
 	private Animator animator;
 	public float xScale;
 	public float yScale;
@@ -13,6 +13,12 @@ public class weaponBox : MonoBehaviour {
 	public float attackDuration;
 	public string weaponType;
 	public float animationSpeed;
+
+    //NEW STUFF BELOW #MAGIC
+    public int weaponDirection = 1;
+//NEW STUFF ENDS HERE #THEMAGICISDEAD
+
+
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator>();
@@ -62,35 +68,65 @@ public class weaponBox : MonoBehaviour {
 		}
 		//barrier
 		transform.localScale = new Vector3(xScale, yScale, 0);
-		if (mainObjectController.movingDirection == 1) {
+		if (mainObjectController.whichWay == 1 && !haveAttacked) {
 			transform.position = new Vector2(mainObjectController.myX, mainObjectController.myY + 0.5f);
 			transform.rotation = Quaternion.Euler(0, 0, 90);
 			xScale = scale;
+            weaponDirection = 1;
 		}
-		if (mainObjectController.movingDirection == 2) {
+		if (mainObjectController.whichWay == 2 && !haveAttacked) {
 			transform.position = new Vector2(mainObjectController.myX, mainObjectController.myY - 1);
 			transform.rotation = Quaternion.Euler(0, 0, 270);
 			xScale = scale;
-		}
-		if (mainObjectController.movingDirection == 3) {
+            weaponDirection = 2;
+        }
+		if (mainObjectController.whichWay == 3 && !haveAttacked) {
 			transform.position = new Vector2(mainObjectController.myX - 1, mainObjectController.myY);
 			transform.rotation = Quaternion.Euler(0, 0, 0);
 			xScale = -scale;
-		}
-		if (mainObjectController.movingDirection == 4) {
+            weaponDirection = 3;
+        }
+		if (mainObjectController.whichWay == 4 && !haveAttacked) {
 			transform.position = new Vector2(mainObjectController.myX + 1, mainObjectController.myY);
 			transform.rotation = Quaternion.Euler(0, 0, 0);
 			xScale = scale;
-		}
-		if (mainObjectController.attack == true && haveAttacked == false) {
-			//GetComponent<SpriteRenderer>().sprite = attackAnimation;
-			StartCoroutine(WaitForAttack());
+            weaponDirection = 4;
+        }
+//THIS PART MAKES THE WEAPON FOLLOW YOU WHEN ATTACKING
+        if(haveAttacked && weaponDirection == 1)
+        {
+            transform.position = new Vector2(mainObjectController.myX, mainObjectController.myY + 0.5f);
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+            xScale = scale;
+        }
+        if (haveAttacked && weaponDirection == 2)
+        {
+            transform.position = new Vector2(mainObjectController.myX, mainObjectController.myY - 1);
+            transform.rotation = Quaternion.Euler(0, 0, 270);
+            xScale = scale;
+        }
+        if (haveAttacked && weaponDirection == 3)
+        {
+            transform.position = new Vector2(mainObjectController.myX - 1, mainObjectController.myY);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            xScale = -scale;
+        }
+        if (haveAttacked && weaponDirection == 4)
+        {
+            transform.position = new Vector2(mainObjectController.myX + 1, mainObjectController.myY);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            xScale = scale;
+        }
+
+        if (mainObjectController.attack == true && haveAttacked == false) {
+            //GetComponent<SpriteRenderer>().sprite = attackAnimation;
+            haveAttacked = true;
+            animator.SetBool("attack", true);
+            StartCoroutine(WaitForAttack());
 		}
 	}
 	IEnumerator WaitForAttack() {
 		Debug.Log ("waiting...");
-		haveAttacked = true;
-		animator.SetBool ("attack", true);
 		yield return new WaitForSeconds (attackDuration);
 		Debug.Log ("done waiting");
 		animator.SetBool ("attack", false);
