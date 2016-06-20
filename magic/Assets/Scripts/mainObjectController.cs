@@ -23,15 +23,7 @@ public class mainObjectController : MonoBehaviour {
 	public Rigidbody2D rigidbody2D;
 	public static int movingDirection;
 
-    //NEW STUFF BELOW #MAGIC 
-    public static float faceX = 0;
-    public static float faceY = 0;
-    public static int whichWay = 1;
-    public float turnSensitivity = 2;
-    public float testX;
-    public float testY;
-
-    void Start () {
+	void Start () {
 		//set variables
 		if (speed == 0) {
 			speed = 7;
@@ -43,103 +35,13 @@ public class mainObjectController : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-
-//NEW STUFF STARTS HERE
-
-        faceX += Input.GetAxis("Mouse X");
-        faceY += Input.GetAxis("Mouse Y");
-        if (faceX > turnSensitivity)
-        {
-            faceX = turnSensitivity;
-        }
-        else if (faceX < -turnSensitivity)
-        {
-            faceX = -turnSensitivity;
-        }
-
-        if (faceY > turnSensitivity)
-        {
-            faceY = turnSensitivity;
-        }
-        else if (faceY < -turnSensitivity)
-        {
-            faceY = -turnSensitivity;
-        }
-
-        if (faceY > 0 && faceY > Mathf.Abs(faceX))
-        {
-            whichWay = 1;
-        }
-        if (faceY < 0 && Mathf.Abs(faceY) > Mathf.Abs(faceX))
-        {
-            whichWay = 2;
-        }
-        if (faceX < 0 && Mathf.Abs(faceX) > Mathf.Abs(faceY))
-        {
-            whichWay = 3;
-        }
-        if (faceX > 0 && faceX > Mathf.Abs(faceY))
-        {
-            whichWay = 4;
-        }
-        //both dir maxed out (exceptions)
-        if(faceX == faceY && faceX > 0)
-        {
-            if(Input.GetAxis("Mouse Y") > Input.GetAxis("Mouse X"))
-            {
-                whichWay = 1;
-            }
-            if (Input.GetAxis("Mouse X") > Input.GetAxis("Mouse Y"))
-            {
-                whichWay = 4;
-            }
-        }
-        if (faceX == -faceY && faceX > 0)
-        {
-            if (Mathf.Abs(Input.GetAxis("Mouse Y")) > Input.GetAxis("Mouse X"))
-            {
-                whichWay = 2;
-            }
-            if (Input.GetAxis("Mouse X") > Mathf.Abs(Input.GetAxis("Mouse Y")))
-            {
-                whichWay = 4;
-            }
-        }
-        if (faceX == faceY && faceX < 0)
-        {
-            if (Input.GetAxis("Mouse Y") < Input.GetAxis("Mouse X"))
-            {
-                whichWay = 2;
-            }
-            if (Input.GetAxis("Mouse X") < Input.GetAxis("Mouse Y"))
-            {
-                whichWay = 3;
-            }
-        }
-        if(faceX == -faceY && faceX < 0)
-        {
-            if (Mathf.Abs(Input.GetAxis("Mouse X")) > Input.GetAxis("Mouse Y"))
-            {
-                whichWay = 3;
-            }
-            if (Input.GetAxis("Mouse Y") > Mathf.Abs(Input.GetAxis("Mouse X")))
-            {
-                whichWay = 1;
-            }
-        }
-        //end of exceptions
-        testX = faceX;
-        testY = faceY;
-
-        //NEW STUFF ENDS HERE
-
-       /* if (attack) {
+		if (attack) {
 			upSpeed = 0;
 			downSpeed = 0;
 			leftSpeed = 0;
 			rightSpeed = 0;
-		} */
-	//	else if(!attack){
+		}
+		else if(!attack){
 			if ((Input.GetKey ("w")) || (Input.GetKey ("up"))) {
 				upSpeed = speed;
 			} else {
@@ -160,7 +62,7 @@ public class mainObjectController : MonoBehaviour {
 			} else {
 				rightSpeed = 0;
 			}
-		//}
+		}
 		horizontalSpeed = leftSpeed + rightSpeed;
 		verticalSpeed = upSpeed + downSpeed;
 		rigidbody2D.velocity = new Vector2 (horizontalSpeed, verticalSpeed);
@@ -289,4 +191,9 @@ public class mainObjectController : MonoBehaviour {
 
 		}
 	}
+//	void OnCollisionEnter2D(Collision2D coll) {
+//		if (coll.gameObject.tag == "SafeCollision")
+//			coll.gameObject.SendMessage("ApplyDamage", 10);
+		
+//	}
 }
