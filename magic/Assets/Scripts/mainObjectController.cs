@@ -129,6 +129,21 @@ public class mainObjectController : MonoBehaviour {
                 whichWay = 1;
             }
         }
+
+        if (whichWay != 3 && whichWay != 4)
+        {
+            if (Input.GetAxis("Mouse X") == 0)
+            {
+                faceX = (faceX / 2.0f);
+            }
+        }
+        if (whichWay != 1 && whichWay != 2)
+        {
+            if (Input.GetAxis("Mouse Y") == 0)
+            {
+                faceY = (faceY / 2.0f);
+            }
+        }
         //end of exceptions
         testX = faceX;
         testY = faceY;
